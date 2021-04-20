@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+	<data>
+		<!-- arisnew.course tree view -->
+		<record id="school_view_tree" model="ir.ui.view">
+			<field name="name">school.view.tree</field>
+			<field name="model">school.profile</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="category_id"/>
+					<field name="email"/>
+					<field name="phone"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- arisnew.course form view -->
+		<record id="school_view_form" model="ir.ui.view">
+			<field name="name">school.view.form</field>
+			<field name="model">school.profile</field>
+			<field name="arch" type="xml">
+				<form string="">
+					<sheet>
+						<group>
+							<!-- Add your fields here -->
+							<group>
+								<field name="name"/>
+								<field name="category_id"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+							</group>
+						</group>
+
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- arisnew.course search view -->
+		<record id="school_view_search" model="ir.ui.view">
+			<field name="name">school.view.search</field>
+			<field name="model">school.profile</field>
+			<field name="arch" type="xml">
+				<search string="Search School">
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="phone"/>
+                    <field name="email"/>
+					<field name="category_id"/>
+
+					<filter name="php" string="PHP" domain="[('name','ilike','php')]"/>
+
+					<group string="Group By">
+						<filter name="group_by_category" 
+							string="Category"
+							context="{'group_by': 'category_id'}"/>
+					</group>	
+				</search>
+			</field>
+		</record>
+
+
+		<!-- arisnew.course action window -->
+		<record id="school_action" model="ir.actions.act_window">
+			<field name="name">School</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">school.profile</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+				</p>
+				<p>
+					<!-- More details about what a user can do with this object will be OK --> 
+				</p>
+			</field>
+		</record>
+
+		<!-- This Menu Item must have a parent and an action -->
+		<menuitem id="school_root_menu" name="S of T" />
+    <menuitem id="Menu" parent="school_root_menu" />
+    <menuitem id="school_profile_menu" action="school_action" parent="Menu"/>
+
+	</data>
+</odoo>

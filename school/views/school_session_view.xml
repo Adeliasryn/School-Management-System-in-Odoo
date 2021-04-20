@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- arisnew.session tree view -->
+        <record id="school_session_view_tree" model="ir.ui.view">
+            <field name="name">school.session.view.tree</field>
+            <field name="model">school.session</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="school_id"/>
+                    <field name="instructor_id"/>
+                    <field name="session_date"/>
+                    <field name="min_attendee"/>
+                    <field name="taken_seats" widget="progressbar"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- arisnew.session form view -->
+        <record id="school_session_view_form" model="ir.ui.view">
+            <field name="name">school.session.view.form</field>
+            <field name="model">school.session</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="school_id"/>
+                                <field name="instructor_id"/>
+                            </group>
+                            <group>
+                                <field name="session_date"/>
+                                <field name="min_attendee"/>
+                                <field name="taken_seats" widget="progressbar"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="attendee" string="Attendee">
+                                <field name="attendee_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="student_id"/>
+                                        <field name="reg_date"/>
+                                        <field name="remark"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- arisnew.session action window -->
+        <record id="school_session_action" model="ir.actions.act_window">
+            <field name="name">Session</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">school.session</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create new Session...
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- arisnew.session search view -->
+        <record id="school_session_view_search" model="ir.ui.view">
+            <field name="name">school.session.view.search</field>
+            <field name="model">school.session</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <field name="name"/>
+                    <field name="school_id"/>
+                    <field name="instructor_id"/>
+
+                    <group string="Group By">
+						<filter name="group_by_school" 
+							string="School"
+							context="{'group_by': 'school_id'}"/>
+                        <filter name="group_by_instructor" 
+							string="Instructor"
+							context="{'group_by': 'instructor_id'}"/>
+					</group>
+
+                </search>
+            </field>
+        </record>
+        
+        <menuitem id="Menu" parent="school_root_menu" />
+        <menuitem id="session_menu_act" name="Session" parent="Menu" action="school_session_action" sequence="30"/>
+        
+    </data>
+</odoo>

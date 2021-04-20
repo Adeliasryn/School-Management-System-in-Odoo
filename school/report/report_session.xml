@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <report
+            id="action_report_school_session"
+            model="school.session"
+            string="Session Report"
+            report_type="qweb-pdf"
+            name="school.report_session"
+            file="school.report_session"
+        />
+
+        <template id="report_session" name="report_session">
+            <t t-call="report.external_layout">
+                        <div class="page">
+                            <h3 class="text-center">
+                                Session Report
+                                <br/>
+                                <small><span t-esc="docs.name"/></small>
+                            </h3>
+                            <p><b>______</b></p>
+                            <p><b>______</b></p>
+                            <p><b>School :</b> <span t-field="docs.school_id"/></p>
+                            <p><b> </b></p>
+                            <p><b>Instructor :</b> <span t-field="docs.instructor_id"/></p>
+
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <th>No</th>
+                                    <th>No Registrasi</th>
+                                    <th>Student</th>
+                                </tr>
+                                <t t-set="no" t-value="1"/>
+                                <tr t-foreach="docs.attendee_ids" t-as="attn">
+                                    <td><span t-esc="no"/></td>
+                                    <td><span t-esc="attn.name"/></td>
+                                    <td><span t-esc="attn.student_id.name"/></td>
+                                    <t t-set="no" t-value="no+1"/>
+                                </tr>
+                            </table>
+                        </div>
+            </t>
+        </template>
+        
+    </data>
+</odoo>

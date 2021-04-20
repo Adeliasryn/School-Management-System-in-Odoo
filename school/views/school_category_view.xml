@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+	<data>
+        <record id="school_category_view_tree" model="ir.ui.view">
+			<field name="name">school.category.view.tree</field>
+			<field name="model">school.category</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="school_category_view_form" model="ir.ui.view">
+			<field name="name">school.category.view.form</field>
+			<field name="model">school.category</field>
+			<field name="arch" type="xml">
+				<form string="">
+					<sheet>
+						<group>
+							<!-- Add your fields here -->
+							<group>
+								<field name="name"/>
+							</group>
+						</group>
+
+						<notebook>
+							<page string="Description" name="description">
+								<field name="description"/>
+							</page>
+							<page name="School" string="School">
+								<field name="school_ids"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+        <record id="school_category_view_search" model="ir.ui.view">
+			<field name="name">school.category.view.search</field>
+			<field name="model">school.category</field>
+			<field name="arch" type="xml">
+				<search string="Search School Category">
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+				</search>
+			</field>
+		</record>
+
+        <record id="school_category_action" model="ir.actions.act_window">
+			<field name="name">School Categories</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">school.category</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+				</p>
+				<p>
+					<!-- More details about what a user can do with this object will be OK --> 
+				</p>
+			</field>
+		</record>
+
+    <menuitem id="Menu" parent="school_root_menu" />
+    <menuitem id="school_category_menu" action="school_category_action" parent="Menu"/>
+
+	</data>
+</odoo>
