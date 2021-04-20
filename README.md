@@ -3,7 +3,7 @@
 
 ## This addons named SofT. 
 
-SofT is partner for your school activities management
+SofT is partner for your school activities management.
 Get started in no time, quickly and easily add new classes, sessions as you think of them !!!!
 It will help you to manage your classes, students, teachers in one app. 
 
